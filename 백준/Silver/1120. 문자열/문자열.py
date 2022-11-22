@@ -1,19 +1,13 @@
-# 문자열 (실4)
-
 A, B = input().split()
 
-result1 = 0
-result2 = len(A)
+# 알파벳 추가는 상관하지 않는다
+result = len(A)
 for i in range (len(B)-len(A)+1):
-  cnt1 = 0
-  cnt2 = 0
+  cnt = 0
   for j in range (len(A)):
-    if A[j] == B[i+j]:
-      cnt1 += 1
-    else :
-      cnt2 += 1
-  if cnt1 > result1 :
-    result1 = cnt1
-    result2 = cnt2
+    if A[j] != B[i+j]:
+      cnt += 1
+  if cnt < result : #다른 문자가 제일 적을 때
+    result = cnt
 
-print(result2)
+print(result)
