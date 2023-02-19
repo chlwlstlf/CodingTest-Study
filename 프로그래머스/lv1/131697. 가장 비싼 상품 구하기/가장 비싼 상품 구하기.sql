@@ -1,0 +1,4 @@
+-- 18. 가장 비싼 상품 구하기 Level 1
+
+SELECT MAX(PRICE) AS MAX_PRICE
+FROM PRODUCT
