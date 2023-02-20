@@ -1,0 +1,6 @@
+-- 47. 없어진 기록 찾기 Level 3
+
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_OUTS 
+WHERE ANIMAL_ID NOT IN (SELECT ANIMAL_ID
+                       FROM ANIMAL_INS)
