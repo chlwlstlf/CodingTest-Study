@@ -5,19 +5,20 @@ input = sys.stdin.readline
 
 A, P = map(int, input().split())
 
-def dfs(n, visited):
-  if n in visited:
-    print(visited.index(n))
-    return 
-  else :
-    visited.append(n)
+def dfs(v):
+  if v in visited:
+    print(visited.index(v))
+    return
+  else:
+    visited.append(v)
 
-  num = list(map(int, str(n)))
-  result = 0
-  for i in range(len(num)):
-    result += num[i]**P
+  v = str(v)
+  ans = 0
+  for i in v:
+    ans += int(i)**P
 
-  dfs(result, visited)
+  dfs(ans)
   
 
-dfs(A, [])
+visited = []
+dfs(A)
