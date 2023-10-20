@@ -11,8 +11,7 @@ def solution(board, moves):
         for i in range(len(board_T[m])):
             if board_T[m][i] != 0:
                 result.append(board_T[m][i])
-                del board_T[m][i]
-                board_T[m].appendleft(0)
+                board_T[m][i] = 0
                 break
         if len(result) >=2 and result[-1] == result[-2]:
             result = result[:-2]
