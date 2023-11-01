@@ -21,13 +21,8 @@ def separate(string):
             return i
 
 def reverseU(string):
-    string = list(string)
-    for i in range(len(string)):
-        if string[i] == '(':
-            string[i] = ')'
-        else:
-            string[i] = '('
-    return ''.join(string)
+    string = string.replace('(', '.').replace(')', '(').replace('.', ')')
+    return string
     
 def toCorrect(string):
     if isCorrect(string):
