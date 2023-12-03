@@ -1,43 +1,52 @@
-# 3. 봄버맨(실1)
+# 3. 봄버맨 (실1)
 
 import sys
 input = sys.stdin.readline
 
+# 입력
 R, C, N = map(int, input().split())
 arr = [list(input().rstrip()) for _ in range(R)]
 
-if N%2 == 0:
-  for i in range(R):
-    print('O'*C)
-else:
-  dx = [1, -1, 0, 0]
-  dy = [0, 0, 1, -1]
+# 'O'를 0으로 바꾸기(0초에 설치된 폭탄이라는 뜻)
+for i in range(R):
+  for j in range(C):
+    if arr[i][j] == 'O':
+      arr[i][j] = 0
 
-  #계산을 해주기 위해 'O'을 0으로 바꿈
+# 폭탄 설치 함수
+def installBomb(t):
   for i in range(R):
     for j in range(C):
-      if arr[i][j] == 'O':
-        arr[i][j] = 0
+      if arr[i][j] == '.':
+        arr[i][j] = t
 
-  for i in range(2, N+1):
-    if i%2 == 0:
-      for j in range(R):
-        for k in range(C):
-          if arr[j][k] == '.':
-            arr[j][k] = i
+# 폭탄 폭발 함수
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
+def explosionBomb(t):
+  for i in range(R):
+    for j in range(C):
+      if arr[i][j] == t:
+        arr[i][j] = '.'
+        for k in range(4):
+          nx = i+dx[k]
+          ny = j+dy[k]
+          if 0 <= nx < R and 0 <= ny < C and arr[nx][ny] != t:
+            arr[nx][ny] = '.'
+
+# for문으로 time 돌리기
+for time in range(2, N+1):
+  if time%2 == 0:
+    installBomb(time)
+  else:
+    explosionBomb(time-3)
+
+# 출력
+for i in range(R):
+  for j in range(C):
+    if arr[i][j] == '.':
+      print('.', end='')
     else:
-      for j in range(R):
-        for k in range(C):
-          if arr[j][k] == i-3:
-            arr[j][k] = '.'
-            for l in range(4):
-              if 0<=j+dx[l]<R and 0<=k+dy[l]<C and arr[j+dx[l]][k+dy[l]] != i-3:
-                arr[j+dx[l]][k+dy[l]] = '.'
-  #출력
-  for i in range(R):
-    for j in range(C):
-      if arr[i][j]=='.':
-        print('.', end='')
-      else:
-        print('O', end='')
-    print()
+      print('O', end='')
+  print()
+
