@@ -35,7 +35,7 @@ def explosionBomb(t):
             arr[nx][ny] = '.'
 
 # for문으로 time 돌리기
-for time in range(2, N+1):
+for time in range(2, min(N+1, N%4+5)):
   if time%2 == 0:
     installBomb(time)
   else:
