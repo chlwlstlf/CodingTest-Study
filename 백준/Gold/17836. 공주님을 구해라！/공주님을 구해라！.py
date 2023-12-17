@@ -68,9 +68,7 @@ bfs2(0, 0)
 min_value = min(arr1[N-1][M-1], arr2[N-1][M-1])
 max_value = max(arr1[N-1][M-1], arr2[N-1][M-1])
 if min_value == 0:
-  if max_value == 0:
-    print("Fail")
-  elif max_value > T:
+  if max_value == 0 or max_value > T:
     print("Fail")
   else:
     print(max_value)
