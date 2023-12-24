@@ -22,7 +22,7 @@ def bfs1(x, y):
         arr1[nx][ny] = arr1[x][y] + 1
         q.append((nx, ny))
 
-# bfs2 - 검 획득 전
+# bfs2 - 검 획득
 def bfs2(x, y):
   q = deque()
   q.append((x, y))
@@ -38,25 +38,8 @@ def bfs2(x, y):
           q.append((nx, ny))
           visited[nx][ny] = 1
         if arr2[nx][ny] == 2 and visited[nx][ny] == 0: 
-          arr2[nx][ny] = arr2[x][y] + 1
-          bfs3(nx, ny)
+          arr2[N-1][M-1] = arr2[x][y] + 1 + N-nx-1 + M-ny-1
           return
-
-# bfs3 - 검 획득 후
-def bfs3(x, y):
-  q = deque()
-  q.append((x, y))
-  visited = [[0]*M for _ in range(N)]
-  visited[x][y] = 1
-  while q:
-    x, y = q.popleft()
-    for i in range(4):
-      nx = x + dx[i]
-      ny = y + dy[i]
-      if 0 <= nx < N and 0 <= ny < M and visited[nx][ny] == 0:
-        arr2[nx][ny] = arr2[x][y] + 1
-        visited[nx][ny] = 1
-        q.append((nx, ny))
 
 # bfs 호출
 dx = [1, -1, 0, 0]
