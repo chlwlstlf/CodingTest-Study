@@ -8,8 +8,8 @@ def solution(schedules, timelogs, startday):
         schedule = changeTime(schedules[i])
         cnt = 0
         for j in range(7):
-            today = (startday+j)%7
-            if today == 6 or today == 0:
+            today = (startday+j-1)%7
+            if today == 5 or today == 6:
                 continue
             timelog = changeTime(timelogs[i][j])
             if timelog <= schedule+10:
